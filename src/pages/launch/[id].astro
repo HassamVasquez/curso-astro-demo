@@ -1,0 +1,15 @@
+---
+import { getLatestLaunchBy } from "../../services/spacex"
+
+const {id} = Astro.params
+
+let launch
+
+if(id){
+    launch = await getLatestLaunchBy({id})
+}
+console.log(launch)
+---
+<article>
+    {launch?.id}
+</article>
