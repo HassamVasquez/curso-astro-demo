@@ -22,22 +22,7 @@ export const getLatestLaunches = async () => {
 }
 
 export const getLatestLaunchBy = async ({ id }: { id: string }) => {
-    const res = await fetch('https://api.spacexdata.com/v5/launches/${id}', {
-        method: "POST",
-        headers: {
-            "Content-Type": "aplication/json",
-        },
-        body: JSON.stringify({
-            query: {},
-            options: {
-                sort: {
-                    date_unix: "asc"
-                },
-                limit: 12
-            }
-        })
-    })
-
-    const launch = await res.json() as Doc
+    const res = await fetch(`https://api.spacexdata.com/v5/launches/${id}`)
+    const launch = (await res.json()) as Doc
     return launch
 }
